@@ -68,16 +68,7 @@ async function bootstrap() {
 
   // 静态文件服务（生产环境）
   if (process.env.NODE_ENV === 'production') {
-    // 主站静态文件
-    await server.register(fastifyStatic, {
-      root: join(__dirname, '../../client/dist'),
-      prefix: '/',
-      cacheControl: true,
-      maxAge: '1d',
-      immutable: true,
-      decorateReply: false, // 防止多个 static 注册冲突
-    });
-
+    // 优先注册具体路径，防止被根路径 '/' 拦截
     // 文档静态文件
     await server.register(fastifyStatic, {
       root: join(__dirname, '../../docs/.vitepress/dist'),
@@ -85,7 +76,8 @@ async function bootstrap() {
       cacheControl: true,
       maxAge: '1d',
       immutable: true,
-      decorateReply: false,
+      // 第一个注册的插件负责装饰 reply.sendFile，后续注册需设为 false
+      // decorateReply: false, 
     });
 
     // 独立管理后台静态文件
@@ -96,6 +88,16 @@ async function bootstrap() {
       maxAge: '1d',
       immutable: true,
       decorateReply: false,
+    });
+
+    // 主站静态文件
+    await server.register(fastifyStatic, {
+      root: join(__dirname, '../../client/dist'),
+      prefix: '/',
+      cacheControl: true,
+      maxAge: '1d',
+      immutable: true,
+      decorateReply: false, // 防止多个 static 注册冲突
     });
 
     // SPA 路由回退集

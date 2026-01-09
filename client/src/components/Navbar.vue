@@ -24,9 +24,6 @@
           <li class="navbar-item">
             <router-link to="/about" class="navbar-link">{{ $t('nav.about') }}</router-link>
           </li>
-          <li class="navbar-item">
-            <a href="/manage/" class="navbar-link">后台管理</a>
-          </li>
           <!-- 语言选择 -->
           <li class="navbar-item lang-switcher" @mouseenter="isLangMenuOpen = true" @mouseleave="isLangMenuOpen = false">
             <a class="navbar-link lang-btn">

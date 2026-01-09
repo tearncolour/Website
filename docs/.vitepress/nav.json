@@ -1,0 +1,7 @@
+[
+  { "text": "首页", "link": "/" },
+  { "text": "用户指南", "link": "/guide/" },
+  { "text": "ROS 驱动", "link": "/ros/gripper/gripper" },
+  { "text": "产品目录", "link": "/products/" },
+  { "text": "关于我们", "link": "/about/" }
+]

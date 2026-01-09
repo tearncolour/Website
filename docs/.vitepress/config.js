@@ -1,20 +1,16 @@
 import { defineConfig } from 'vitepress'
+import nav from './nav.json'
 
 export default defineConfig({
+  base: '/docs/',
   title: '灵掌WIKI',
   description: '灵掌机器人技术文档库',
   // 启用编译缓存
   cacheDir: './.vitepress/cache',
   themeConfig: {
-    siteTitle: false,
-    nav: [
-      { text: '首页', link: '/' },
-      { text: '用户指南', link: '/guide/' },
-      { text: 'API 参考', link: '/api/' },
-      { text: 'ROS 驱动', link: '/ros/gripper/gripper' },
-      { text: '产品目录', link: '/products/' },
-      { text: '关于我们', link: '/about/' }
-    ],
+    logo: '/logo.png',
+    siteTitle: '灵掌智能 WIKI',
+    nav,
     sidebar: {
       '/ros/': [
         {

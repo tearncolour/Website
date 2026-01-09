@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fastify/multipart": "^9.3.0",
+    "md-editor-v3": "^6.3.1",
+    "tdesign-icons-vue-next": "^0.4.1",
     "tdesign-vue-next": "^1.18.0",
     "vue": "^3.5.24"
   },
@@ -16,6 +19,7 @@
     "@types/node": "^24.10.1",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
+    "sass": "^1.97.2",
     "typescript": "~5.9.3",
     "vite": "^6.0.0",
     "vue-tsc": "^3.1.4"

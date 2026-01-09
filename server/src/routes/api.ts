@@ -11,6 +11,7 @@ const execAsync = promisify(exec);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = pathDirname(__filename);
 const DOCS_ROOT = resolve(__dirname, '../../../docs');
+const NAV_CONFIG = resolve(DOCS_ROOT, '.vitepress/nav.json');
 
 // 内存中的构建状态
 let buildStatus = {
@@ -393,6 +394,50 @@ export async function apiRoutes(fastify: FastifyInstance) {
     }
     try {
       await fs.rm(fullPath, { recursive: true, force: true });
+      return { success: true };
+    } catch (err: any) {
+      return { success: false, error: err.message };
+    }
+  });
+
+  // 移动文件或目录 (支持拖拽)
+  fastify.post<{ Body: { from: string; to: string } }>('/docs/move', async (request, reply) => {
+    const { from: relFrom, to: relTo } = request.body;
+    if (!relFrom || !relTo) return { success: false, error: '源路径和目标路径不能为空' };
+    
+    const fullFrom = join(DOCS_ROOT, relFrom);
+    const fullTo = join(DOCS_ROOT, relTo);
+    
+    if (!fullFrom.startsWith(DOCS_ROOT) || !fullTo.startsWith(DOCS_ROOT)) {
+      reply.code(403);
+      return { success: false, error: '非法的访问路径' };
+    }
+    
+    try {
+      // 确保目标目录存在
+      await fs.mkdir(pathDirname(fullTo), { recursive: true });
+      await fs.rename(fullFrom, fullTo);
+      return { success: true };
+    } catch (err: any) {
+      return { success: false, error: err.message };
+    }
+  });
+
+  // 获取导航栏配置
+  fastify.get('/docs/nav', async () => {
+    try {
+      const data = await fs.readFile(NAV_CONFIG, 'utf-8');
+      return { success: true, data: JSON.parse(data) };
+    } catch (err: any) {
+      return { success: false, error: err.message };
+    }
+  });
+
+  // 保存导航栏配置
+  fastify.post<{ Body: { nav: any[] } }>('/docs/nav', async (request, reply) => {
+    const { nav } = request.body;
+    try {
+      await fs.writeFile(NAV_CONFIG, JSON.stringify(nav, null, 2), 'utf-8');
       return { success: true };
     } catch (err: any) {
       return { success: false, error: err.message };

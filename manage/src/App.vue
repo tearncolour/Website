@@ -19,7 +19,9 @@
         :data="treeData"
         hover
         expand-all
+        draggable
         @click="handleNodeClick"
+        @drop="handleDrop"
         class="doc-tree"
       >
         <template #label="{ node }">
@@ -42,13 +44,17 @@
     <t-layout>
       <t-header class="manage-header">
         <div class="brand">
-          <img src="https://img.pconline.com.cn/images/upload/upc/tx/itbd/1406/11/c3/35165158_1402473636734.jpg" class="admin-logo" />
+          <img src="/logo.png" class="admin-logo" />
           <span>灵掌智能 | 后台管理</span>
         </div>
         <div class="breadcrumb" v-if="currentFile">
           正在编辑: <strong>{{ currentFile }}</strong>
         </div>
         <t-space>
+          <t-button variant="outline" @click="showNavEditor">
+            编辑导航栏
+          </t-button>
+          <t-divider layout="vertical" />
           <t-button v-if="currentFile" theme="primary" :loading="saving" @click="saveFile">
             保存当前文件
           </t-button>
@@ -113,8 +119,159 @@
         </t-form-item>
       </t-form>
     </t-dialog>
+
+    <!-- 导航栏编辑弹窗 -->
+    <t-dialog
+      v-model:visible="navDialog.visible"
+      header="编辑文档库导航栏"
+      width="600px"
+      @confirm="handleNavSave"
+    >
+      <div v-for="(item, index) in navDialog.items" :key="index" style="margin-bottom: 16px; display: flex; gap: 8px;">
+        <t-input v-model="item.text" placeholder="显示文字" style="flex: 2" />
+        <t-input v-model="item.link" placeholder="链接路径" style="flex: 3" />
+        <t-button theme="danger" variant="text" @click="navDialog.items.splice(index, 1)">删除</t-button>
+      </div>
+      <t-button variant="outline" dash @click="navDialog.items.push({ text: '', link: '' })" block>
+        + 添加导航项
+      </t-button>
+    </t-dialog>
   </t-layout>
 </template>
+
+<style lang="scss">
+.manage-layout {
+  height: 100vh;
+}
+
+.manage-aside {
+  background: #f3f3f3;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.aside-header {
+  padding: 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+.doc-tree {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.tree-node-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-right: 8px;
+}
+
+.delete-btn {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.tree-node-label:hover .delete-btn {
+  opacity: 1;
+}
+
+.manage-header {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.admin-logo {
+  height: 32px;
+  margin-right: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.manage-content {
+  padding: 24px;
+  background: #f9f9f9;
+  overflow-y: auto;
+}
+
+.editor-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.markdown-editor {
+  flex: 1;
+  width: 100%;
+  padding: 20px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 16px;
+  line-height: 1.6;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: none;
+  background: #fff;
+}
+
+.build-status-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 24px;
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.status-title {
+  font-weight: bold;
+}
+
+.log-window {
+  margin-top: 12px;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 12px;
+  border-radius: 4px;
+  font-family: monospace;
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 12px;
+}
+
+.log-line {
+  margin-bottom: 4px;
+}
+
+.log-timestamp {
+  color: #6a9955;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #999;
+}
+</style>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
@@ -147,6 +304,11 @@ const createDialog = ref({
   visible: false,
   type: 'file' as 'file' | 'dir',
   name: ''
+});
+
+const navDialog = ref({
+  visible: false,
+  items: [] as Array<{ text: string; link: string }>
 });
 
 const fetchTree = async () => {
@@ -277,6 +439,77 @@ const handleCreate = async () => {
     }
   } catch (err) {
     MessagePlugin.error('创建失败');
+  }
+};
+
+const handleDrop = async (context: any) => {
+  const { dragNode, node, dropPosition } = context;
+  const from = dragNode.data.value;
+  let to = node.data.value;
+
+  // 如果拖拽到文件内部，则移动到该文件所在的同级目录
+  // 如果拖拽到目录及其内部，则移动到该目内
+  // TDesign tree: dropPosition 为 0 表示进入节点内部，1 表示节点下方，-1 表示节点上方
+  if (node.data.type === 'file' || dropPosition !== 0) {
+    // 移动到目标节点所在的同级目录
+    const parts = to.split('/');
+    parts.pop(); // 移除文件名
+    to = parts.length > 0 ? parts.join('/') + '/' + dragNode.data.label : dragNode.data.label;
+  } else {
+    // 移动到目录内
+    to = to + '/' + dragNode.data.label;
+  }
+
+  if (from === to) return;
+
+  try {
+    const res = await fetch('/api/docs/move', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ from, to })
+    });
+    const result = await res.json();
+    if (result.success) {
+      MessagePlugin.success('移动成功');
+      fetchTree();
+      if (currentFile.value === from) {
+        currentFile.value = to;
+      }
+    } else {
+      MessagePlugin.error(result.error || '移动失败');
+    }
+  } catch (err) {
+    MessagePlugin.error('移动请求失败');
+  }
+};
+
+const showNavEditor = async () => {
+  try {
+    const res = await fetch('/api/docs/nav');
+    const result = await res.json();
+    if (result.success) {
+      navDialog.value.items = result.data;
+      navDialog.value.visible = true;
+    }
+  } catch (err) {
+    MessagePlugin.error('获取导航配置失败');
+  }
+};
+
+const handleNavSave = async () => {
+  try {
+    const res = await fetch('/api/docs/nav', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nav: navDialog.value.items })
+    });
+    const result = await res.json();
+    if (result.success) {
+      MessagePlugin.success('导航栏更新成功');
+      navDialog.value.visible = false;
+    }
+  } catch (err) {
+    MessagePlugin.error('保存导航配置失败');
   }
 };
 
