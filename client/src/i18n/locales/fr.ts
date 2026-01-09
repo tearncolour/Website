@@ -7,10 +7,14 @@ export default {
     docs: 'Documentation'
   },
   hero: {
-    title: 'Technologie de Main Dextre',
-    subtitle: 'Précision dans la Dextérité, Autonomisation de l\'Industrie',
-    viewServices: 'Nos Services',
-    aboutUs: 'À Propos de Nous'
+    slides: [
+      {
+        title: 'Technologie de Main Dextre',
+        subtitle: 'Précision dans la Dextérité, Autonomisation de l\'Industrie',
+        btnPrimary: 'Nos Services',
+        btnOutline: 'À Propos de Nous'
+      }
+    ]
   },
   footer: {
     slogan: 'Technologie de main dextre, au service de l\'automatisation du futur',

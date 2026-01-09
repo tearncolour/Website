@@ -7,10 +7,26 @@ export default {
     docs: 'Documentation'
   },
   hero: {
-    title: 'Dexterous Hand Tech',
-    subtitle: 'Precision in Dexterity, Empowering Industry',
-    viewServices: 'Our Services',
-    aboutUs: 'About Us'
+    slides: [
+      {
+        title: 'Dexterous Tech',
+        subtitle: 'Precision in Dexterity, Empowering Industry',
+        btnPrimary: 'Our Services',
+        btnOutline: 'About Us'
+      },
+      {
+        title: 'Sense · Reach',
+        subtitle: 'Endowing robots with human-like dexterity and tactile sensing',
+        btnPrimary: 'Explore Tech',
+        btnOutline: 'Docs'
+      },
+      {
+        title: 'Intelligent AI',
+        subtitle: 'End-to-end learning for highly complex environments',
+        btnPrimary: 'Case Studies',
+        btnOutline: 'Contact'
+      }
+    ]
   },
   footer: {
     slogan: 'Dexterous Hand Tech, Empowering the Future of Automation',

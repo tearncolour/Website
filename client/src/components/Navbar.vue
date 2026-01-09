@@ -140,7 +140,7 @@ const changeLocale = (langCode: string) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 72px;
+  height: 52px;
 }
 
 .navbar-brand {
@@ -154,7 +154,7 @@ const changeLocale = (langCode: string) => {
   }
   
   .logo {
-    height: 52px;
+    height: 38px;
     width: auto;
     object-fit: contain;
   }
@@ -163,7 +163,7 @@ const changeLocale = (langCode: string) => {
 .navbar-menu {
   display: flex;
   list-style: none;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
 }
 
 .navbar-item {
@@ -171,8 +171,8 @@ const changeLocale = (langCode: string) => {
 }
 
 .navbar-link {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   color: var(--color-primary);
   opacity: 0.8;
   transition: opacity var(--transition-fast), color var(--transition-fast);
@@ -189,12 +189,12 @@ const changeLocale = (langCode: string) => {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
+  padding: 4px 10px;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 20px;
-  font-size: 14px;
+  border-radius: 16px;
+  font-size: 13px;
   background: rgba(0, 0, 0, 0.03);
-  margin-left: 10px;
+  margin-left: 5px;
   transition: all var(--transition-fast);
   
   &:hover {

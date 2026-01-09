@@ -7,10 +7,14 @@ export default {
     docs: 'الوثائق'
   },
   hero: {
-    title: 'تكنولوجيا اليد الماهرة',
-    subtitle: 'الدقة في المهارة، تمكين الصناعة',
-    viewServices: 'خدماتنا',
-    aboutUs: 'حولنا'
+    slides: [
+      {
+        title: 'تكنولوجيا اليد الماهرة',
+        subtitle: 'الدقة في المهارة، تمكين الصناعة',
+        btnPrimary: 'خدماتنا',
+        btnOutline: 'حولنا'
+      }
+    ]
   },
   footer: {
     slogan: 'تكنولوجيا اليد الماهرة، تمكين مستقبل الأتمتة',

@@ -7,10 +7,14 @@ export default {
     docs: 'Dokumentation'
   },
   hero: {
-    title: 'Dexterous Hand Tech',
-    subtitle: 'Präzision in der Geschicklichkeit, Stärkung der Industrie',
-    viewServices: 'Unsere Dienste',
-    aboutUs: 'Über uns'
+    slides: [
+      {
+        title: 'Dexterous Hand Tech',
+        subtitle: 'Präzision in der Geschicklichkeit, Stärkung der Industrie',
+        btnPrimary: 'Unsere Dienste',
+        btnOutline: 'Über uns'
+      }
+    ]
   },
   footer: {
     slogan: 'Geschickte Hand-Technologie, Stärkung der Zukunft der Automatisierung',

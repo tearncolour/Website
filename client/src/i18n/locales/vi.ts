@@ -7,10 +7,14 @@ export default {
     docs: 'Tài liệu'
   },
   hero: {
-    title: 'Công nghệ Tay Khéo léo',
-    subtitle: 'Chính xác trong Sự khéo léo, Tăng cường sức mạnh cho Công nghiệp',
-    viewServices: 'Dịch vụ của chúng tôi',
-    aboutUs: 'Về chúng tôi'
+    slides: [
+      {
+        title: 'Công nghệ Tay Khéo léo',
+        subtitle: 'Chính xác trong Sự khéo léo, Tăng cường sức mạnh cho Công nghiệp',
+        btnPrimary: 'Dịch vụ của chúng tôi',
+        btnOutline: 'Về chúng tôi'
+      }
+    ]
   },
   footer: {
     slogan: 'Công nghệ tay khéo léo, trao quyền cho tương lai của tự động hóa',

@@ -7,10 +7,14 @@ export default {
     docs: 'Documentación'
   },
   hero: {
-    title: 'Tech de Mano Diestra',
-    subtitle: 'Precisión en la Destreza, Potenciando la Industria',
-    viewServices: 'Nuestros Servicios',
-    aboutUs: 'Sobre Nosotros'
+    slides: [
+      {
+        title: 'Tech de Mano Diestra',
+        subtitle: 'Precisión en la Destreza, Potenciando la Industria',
+        btnPrimary: 'Nuestros Servicios',
+        btnOutline: 'Sobre Nosotros'
+      }
+    ]
   },
   footer: {
     slogan: 'Tecnología de mano diestra, potenciando el futuro de la automatización',

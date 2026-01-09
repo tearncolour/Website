@@ -7,10 +7,26 @@ export default {
     docs: '技术文档'
   },
   hero: {
-    title: '灵掌科技',
-    subtitle: '驭巧于精，工业赋能',
-    viewServices: '了解我们的服务',
-    aboutUs: '关于我们'
+    slides: [
+      {
+        title: '灵掌科技',
+        subtitle: '驭巧于精，工业赋能',
+        btnPrimary: '了解我们的服务',
+        btnOutline: '关于我们'
+      },
+      {
+        title: '感知·触达',
+        subtitle: '赋予机器人人类般的灵巧与触觉特性',
+        btnPrimary: '探索技术',
+        btnOutline: '查看文档'
+      },
+      {
+        title: '智能互联',
+        subtitle: '端到端深度学习，适应极其复杂的作业环境',
+        btnPrimary: '成功案例',
+        btnOutline: '联系我们'
+      }
+    ]
   },
   footer: {
     slogan: '灵巧手技术，赋能自动化未来',

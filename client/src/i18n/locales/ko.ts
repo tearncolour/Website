@@ -7,10 +7,14 @@ export default {
     docs: "기술 문서"
   },
   hero: {
-    title: "링장 테크놀로지",
-    subtitle: "정교한 기술로 산업에 힘을 실어줍니다",
-    viewServices: "서비스 보기",
-    aboutUs: "회사 소개"
+    slides: [
+      {
+        title: "링장 테크놀로지",
+        subtitle: "정교한 기술로 산업에 힘을 실어줍니다",
+        btnPrimary: "서비스 보기",
+        btnOutline: "회사 소개"
+      }
+    ]
   },
   footer: {
     slogan: "정교한 의수 기술로 자동화의 미래를 열어갑니다",

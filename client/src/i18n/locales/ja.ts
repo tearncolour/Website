@@ -7,10 +7,14 @@ export default {
     docs: 'ドキュメント'
   },
   hero: {
-    title: 'デクステラス・ハンド・テック',
-    subtitle: '器用さの精密さ、産業への力',
-    viewServices: 'サービス',
-    aboutUs: '私達について'
+    slides: [
+      {
+        title: 'デクステラス・ハンド・テック',
+        subtitle: '器用さの精密さ、産業への力',
+        btnPrimary: 'サービス',
+        btnOutline: '私達について'
+      }
+    ]
   },
   footer: {
     slogan: '器用な手技術、自動化の未来を強化する',
