@@ -297,13 +297,13 @@ section {
   height: 100%;
   
   img {
-    width: 140%; /* 略微缩小一点比例以更好地容纳在视野内 */
+    width: 125%; /* 进一步缩小比例以提升整体协调性 */
     max-width: none;
     height: auto;
-    max-height: 95vh; 
+    max-height: 90vh; 
     object-fit: contain;
     filter: none;
-    transform: translateX(-5%); /* 移除向下偏移，保持重心向上 */
+    transform: translateX(-5%); /* 保持略微内移，避免贴边 */
     pointer-events: none;
   }
 }
