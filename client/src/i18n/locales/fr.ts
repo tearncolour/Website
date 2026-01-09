@@ -59,9 +59,9 @@ export default {
       title: 'Histoires de Succès',
       clientPrefix: 'Client : ',
       items: [
-        { title: 'Contrôle des Risques FinTech', client: 'Une Grande Banque', industry: 'Finance', description: 'Précision de détection de fraude augmentée de 40%.', metrics: { précision: '99.2%', latence: '<50ms' } },
-        { title: 'Inspection de Fabrication', client: 'Entreprise de Pièces Auto', industry: 'Fabrication', description: 'Efficacité de l\'inspection visuelle multipliée par 10.', metrics: { précision: '99.8%', vitesse: '10x' } },
-        { title: 'Service Client Intelligent', client: 'Plateforme E-commerce', industry: 'Commerce', description: 'Traitement de plus de 100k demandes par jour.', metrics: { satisfaction: '95%', résolution: '85%' } }
+        { title: 'Contrôle des Risques FinTech', client: 'Une Grande Banque', industry: 'Finance', description: 'Précision de détection de fraude augmentée de 40%.', metrics: { 'précisión': '99.2%', 'latence': '<50ms' } },
+        { title: 'Inspection de Fabrication', client: 'Entreprise de Pièces Auto', industry: 'Fabrication', description: 'Efficacité de l\'inspection visuelle multipliée par 10.', metrics: { 'précisión': '99.8%', 'vitesse': '10x' } },
+        { title: 'Service Client Intelligent', client: 'Plateforme E-commerce', industry: 'Commerce', description: 'Traitement de plus de 100k demandes par jour.', metrics: { 'satisfaction': '95%', 'résolution': '85%' } }
       ]
     },
     contact: {

@@ -5,6 +5,10 @@ import ja from './locales/ja'
 import de from './locales/de'
 import ko from './locales/ko'
 import fr from './locales/fr'
+import es from './locales/es'
+import ar from './locales/ar'
+import th from './locales/th'
+import vi from './locales/vi'
 
 const messages = {
   zh,
@@ -12,7 +16,11 @@ const messages = {
   ja,
   de,
   ko,
-  fr
+  fr,
+  es,
+  ar,
+  th,
+  vi
 }
 
 // 获取保存的语言或根据语言偏好/IP自动识别
@@ -26,6 +34,10 @@ const getInitialLocale = () => {
   if (browserLang.startsWith('ja')) return 'ja'
   if (browserLang.startsWith('ko')) return 'ko'
   if (browserLang.startsWith('fr')) return 'fr'
+  if (browserLang.startsWith('es')) return 'es'
+  if (browserLang.startsWith('ar')) return 'ar'
+  if (browserLang.startsWith('th')) return 'th'
+  if (browserLang.startsWith('vi')) return 'vi'
   if (browserLang.startsWith('de')) return 'de'
   if (browserLang.startsWith('en')) return 'en'
 
@@ -39,6 +51,16 @@ const i18n = createI18n({
   fallbackLocale: 'en',
   messages,
 })
+
+// 监听语言变化，处理 RTL (阿拉伯语)
+import { watch } from 'vue'
+if (typeof window !== 'undefined') {
+  watch(() => i18n.global.locale.value, (newLocale) => {
+    const isRTL = newLocale === 'ar'
+    document.documentElement.dir = isRTL ? 'rtl' : 'ltr'
+    document.documentElement.lang = newLocale
+  }, { immediate: true })
+}
 
 // 自动判断并切换语言的逻辑
 export const autoDetectLanguage = async () => {

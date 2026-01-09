@@ -59,9 +59,9 @@ export default {
       title: "성공 사례",
       clientPrefix: "고객사: ",
       items: [
-        { title: "핀테크 스마트 리스크 관리", client: "주요 은행", industry: "금융", description: "스마트 리스크 관리로 부정 탐지 정확도 40% 향상.", metrics: { 정확도: "99.2%", 지연시간: "<50ms" } },
-        { title: "제조업 외관 검사", client: "자동차 부품 기업", industry: "제조", description: "시각 검사 효율성 10배 향상.", metrics: { 정확도: "99.8%", 속도: "10x" } },
-        { title: "스마트 고객 서비스", client: "이커머스 플랫폼", industry: "리테일", description: "일평균 10만 건 이상의 문의 처리.", metrics: { 만족도: "95%", 해결률: "85%" } }
+        { title: "핀테크 스마트 리스크 관리", client: "주요 은행", industry: "금융", description: "스마트 리스크 관리로 부정 탐지 정확도 40% 향상.", metrics: { "정확도": "99.2%", "지연시간": "<50ms" } },
+        { title: "제조업 외관 검사", client: "자동차 부품 기업", industry: "제조", description: "시각 검사 효율성 10배 향상.", metrics: { "정확도": "99.8%", "속도": "10x" } },
+        { title: "스마트 고객 서비스", client: "이커머스 플랫폼", industry: "리테일", description: "일평균 10만 건 이상의 문의 처리.", metrics: { "만족도": "95%", "해결률": "85%" } }
       ]
     },
     contact: {

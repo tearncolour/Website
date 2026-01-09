@@ -100,6 +100,10 @@ const languages = [
   { code: 'ja', name: '日本語', flag: '🇯🇵' },
   { code: 'ko', name: '한국어', flag: '🇰🇷' },
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'ar', name: 'العربية', flag: '🇸🇦' },
+  { code: 'th', name: 'ไทย', flag: '🇹🇭' },
+  { code: 'vi', name: 'Tiếng Việt', flag: '🇻🇳' },
   { code: 'de', name: 'Deutsch', flag: '🇩🇪' }
 ]
 

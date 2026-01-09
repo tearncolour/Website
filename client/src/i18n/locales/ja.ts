@@ -59,9 +59,9 @@ export default {
       title: '成功事例',
       clientPrefix: 'クライアント：',
       items: [
-        { title: 'フィンテック不正検知', client: '大手銀行', industry: '金融', description: 'スマートリスク管理で不正検知率が40%向上。', metrics: { 精度: '99.2%', 遅延: '<50ms' } },
-        { title: '製造業外観検査', client: '自動車部品メーカー', industry: '製造', description: '視覚検査の効率が10倍に向上。', metrics: { 精度: '99.8%', スピード: '10x' } },
-        { title: 'スマートカスタマーサービス', client: 'ECプラットフォーム', industry: '小売', description: '1日10万件以上の問い合わせに対応。', metrics: { 満足度: '95%', 解決率: '85%' } }
+        { title: 'フィンテック不正検知', client: '大手銀行', industry: '金融', description: 'スマートリスク管理で不正検知率が40%向上。', metrics: { '精度': '99.2%', '遅延': '<50ms' } },
+        { title: '製造業外観検査', client: '自動車部品メーカー', industry: '製造', description: '視觉検査の効率が10倍に向上。', metrics: { '精度': '99.8%', 'スピード': '10x' } },
+        { title: 'スマートカスタマーサービス', client: 'ECプラットフォーム', industry: '小売', description: '1日10万件以上の問い合わせに対応。', metrics: { '満足度': '95%', '解決率': '85%' } }
       ]
     },
     contact: {

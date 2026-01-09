@@ -59,9 +59,9 @@ export default {
       title: 'Erfolgsgeschichten',
       clientPrefix: 'Kunde: ',
       items: [
-        { title: 'FinTech Risiko-Kontrolle', client: 'Führende Bank', industry: 'Finanzen', description: 'Betrugserkennung um 40% gesteigert.', metrics: { Genauigkeit: '99.2%', Latenz: '<50ms' } },
-        { title: 'Fertigungsprüfung', client: 'Autoteile-Unternehmen', industry: 'Fertigung', description: 'Prüfeffizienz um das 10-fache gesteigert.', metrics: { Genauigkeit: '99.8%', Speed: '10x' } },
-        { title: 'Smarter Kundenservice', client: 'E-Commerce-Plattform', industry: 'Handel', description: 'Bearbeitung von 100k+ Anfragen täglich.', metrics: { Zufriedenheit: '95%', Lösung: '85%' } }
+        { title: 'FinTech Risiko-Kontrolle', client: 'Führende Bank', industry: 'Finanzen', description: 'Betrugserkennung um 40% gesteigert.', metrics: { 'Genauigkeit': '99.2%', 'Latenz': '<50ms' } },
+        { title: 'Fertigungsprüfung', client: 'Autoteile-Unternehmen', industry: 'Fertigung', description: 'Prüfeffizienz um das 10-fache gesteigert.', metrics: { 'Genauigkeit': '99.8%', 'Speed': '10x' } },
+        { title: 'Smarter Kundenservice', client: 'E-Commerce-Plattform', industry: 'Handel', description: 'Bearbeitung von 100k+ Anfragen täglich.', metrics: { 'Zufriedenheit': '95%', 'Lösung': '85%' } }
       ]
     },
     contact: {
