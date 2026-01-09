@@ -12,6 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = pathDirname(__filename);
 const DOCS_ROOT = resolve(__dirname, '../../../docs');
 const NAV_CONFIG = resolve(DOCS_ROOT, '.vitepress/nav.json');
+const USERS_FILE = resolve(__dirname, '../../data/users.json');
 
 // 内存中的构建状态
 let buildStatus = {
@@ -193,6 +194,25 @@ async function scrapeNewsFromEngine() {
 }
 
 export async function apiRoutes(fastify: FastifyInstance) {
+  // 登录接口
+  fastify.post('/login', async (request, reply) => {
+    const { username, password } = request.body as any;
+    try {
+      const usersData = await fs.readFile(USERS_FILE, 'utf-8');
+      const users = JSON.parse(usersData);
+      const user = users.find((u: any) => u.username === username && u.password === password);
+      
+      if (user) {
+        return { success: true, user: { username: user.username } };
+      } else {
+        return reply.code(401).send({ success: false, message: '用户名或密码错误' });
+      }
+    } catch (error) {
+      console.error(error);
+      return reply.code(500).send({ success: false, message: '服务器内部错误' });
+    }
+  });
+
   // 获取企业信息
   fastify.get('/company', async () => {
     return { success: true, data: companyInfo };

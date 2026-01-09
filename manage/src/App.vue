@@ -1,5 +1,6 @@
 <template>
-  <t-layout class="manage-layout">
+  <Login v-if="!isLoggedIn" @login-success="handleLoginSuccess" />
+  <t-layout v-else class="manage-layout">
     <t-aside width="300px" class="manage-aside">
       <div class="aside-header">
         <h3>文档库管理系统</h3>
@@ -276,6 +277,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { MessagePlugin, DialogPlugin } from 'tdesign-vue-next';
+import Login from './components/Login.vue';
 
 interface TreeNode {
   label: string;
@@ -284,6 +286,7 @@ interface TreeNode {
   children?: TreeNode[];
 }
 
+const isLoggedIn = ref(false);
 const treeData = ref<TreeNode[]>([]);
 const currentFile = ref('');
 const fileContent = ref('');
@@ -297,6 +300,23 @@ const buildInfo = ref({
   lastBuildTime: null as string | null,
   error: null as string | null
 });
+
+onMounted(() => {
+  // 检查是否已登录
+  const user = localStorage.getItem('user');
+  if (user) {
+    isLoggedIn.value = true;
+    fetchTree();
+    fetchBuildStatus();
+  }
+});
+
+const handleLoginSuccess = (user: any) => {
+  localStorage.setItem('user', JSON.stringify(user));
+  isLoggedIn.value = true;
+  fetchTree();
+  fetchBuildStatus();
+};
 
 let pollTimer: any = null;
 
