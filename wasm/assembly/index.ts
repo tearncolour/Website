@@ -137,7 +137,7 @@ let memoryBuffer: Uint8Array | null = null;
 export function allocateMemory(size: i32): void {
   memoryBuffer = new Uint8Array(size);
   for (let i: i32 = 0; i < size; i++) {
-    memoryBuffer[i] = u8(i % 256);
+    memoryBuffer![i] = u8(i % 256);
   }
 }
 
@@ -146,5 +146,5 @@ export function freeMemory(): void {
 }
 
 export function getMemorySize(): i32 {
-  return memoryBuffer ? memoryBuffer.length : 0;
+  return memoryBuffer ? memoryBuffer!.length : 0;
 }
