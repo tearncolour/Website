@@ -15,13 +15,13 @@
     <!-- 服务亮点区域 -->
     <section class="services-highlights">
       <div class="container">
-        <h2 class="text-center">我们的服务</h2>
+        <h2 class="text-center">{{ $t('home.services.title') }}</h2>
         <div class="services-grid">
-          <div class="service-card" v-for="service in services" :key="service.id">
+          <div class="service-card" v-for="service in servicesList" :key="service.id">
             <div class="service-icon">{{ service.icon }}</div>
             <h3>{{ service.name }}</h3>
             <p>{{ service.description }}</p>
-            <router-link to="/services" class="service-link">了解更多 &rarr;</router-link>
+            <router-link to="/services" class="service-link">{{ $t('home.services.learnMore') }} &rarr;</router-link>
           </div>
         </div>
       </div>
@@ -32,10 +32,10 @@
       <div class="container">
         <div class="product-content">
           <div class="product-text">
-            <h2>灵巧手驱动的自动化解决方案</h2>
-            <p>我们的产品结合了最新的灵巧手技术，为企业提供高效、智能的自动化解决方案，帮助企业提升竞争力。</p>
+            <h2>{{ $t('home.product.title') }}</h2>
+            <p>{{ $t('home.product.description') }}</p>
             <div class="btn-group">
-              <router-link to="/services" class="btn btn-primary">探索产品</router-link>
+              <router-link to="/services" class="btn btn-primary">{{ $t('home.product.button') }}</router-link>
             </div>
           </div>
           <div class="product-image">
@@ -54,12 +54,12 @@
     <!-- 成功案例区域 -->
     <section class="success-stories">
       <div class="container">
-        <h2 class="text-center">成功案例</h2>
+        <h2 class="text-center">{{ $t('home.cases.title') }}</h2>
         <div class="cases-grid">
-          <div class="case-card" v-for="caseItem in cases" :key="caseItem.id">
+          <div class="case-card" v-for="caseItem in casesList" :key="caseItem.id">
             <div class="case-industry">{{ caseItem.industry }}</div>
             <h3>{{ caseItem.title }}</h3>
-            <p class="case-client">客户：{{ caseItem.client }}</p>
+            <p class="case-client">{{ $t('home.cases.clientPrefix') }}{{ caseItem.client }}</p>
             <p>{{ caseItem.description }}</p>
             <div class="case-metrics">
               <div class="metric" v-for="(value, key) in caseItem.metrics" :key="key">
@@ -76,10 +76,10 @@
     <section class="contact-section">
       <div class="container">
         <div class="contact-content">
-          <h2>准备好开始了吗？</h2>
-          <p>联系我们，了解如何利用灵巧手技术提升您的业务自动化水平。</p>
+          <h2>{{ $t('home.contact.title') }}</h2>
+          <p>{{ $t('home.contact.description') }}</p>
           <div class="btn-group">
-            <router-link to="/contact" class="btn btn-primary">联系我们</router-link>
+            <router-link to="/contact" class="btn btn-primary">{{ $t('home.contact.button') }}</router-link>
           </div>
         </div>
       </div>
@@ -88,23 +88,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { RouterLink } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
-// 服务数据（从API获取，这里先使用模拟数据）
-const services = ref([
-  { id: 'dexterous-hand', name: '灵巧手产品', icon: '🤖', description: '高精度、高灵活性的灵巧手产品，适用于多种工业自动化场景' },
-  { id: 'data-analytics', name: '数据分析', icon: '📊', description: '智能数据分析平台，洞察业务价值' },
-  { id: 'automation', name: '自动化解决方案', icon: '⚙️', description: '灵巧手驱动的智能自动化方案' },
-  { id: 'computer-vision', name: '视觉识别', icon: '👁️', description: '领先的计算机视觉技术，赋能各行业应用' },
-])
+const { tm, t } = useI18n()
 
-// 案例数据（从API获取，这里先使用模拟数据）
-const cases = ref([
-  { id: 1, title: '金融科技智能风控', client: '某头部银行', industry: '金融', description: '部署智能风控系统，欺诈检测准确率提升40%', metrics: { accuracy: '99.2%', latency: '<50ms', cost: '-60%' } },
-  { id: 2, title: '智能制造质检系统', client: '某汽车零部件企业', industry: '制造', description: '视觉质检方案，缺陷检测效率提升10倍', metrics: { accuracy: '99.8%', speed: '10x', roi: '300%' } },
-  { id: 3, title: '智慧客服机器人', client: '某电商平台', industry: '零售', description: '7x24小时智能客服，日均处理10万+咨询', metrics: { satisfaction: '95%', resolution: '85%', cost: '-70%' } },
-])
+// 服务数据
+const servicesList = computed(() => {
+  const data = tm('home.services.items') as any[]
+  const icons = ['🤖', '📊', '⚙️', '👁️']
+  return data.map((item, index) => ({
+    ...item,
+    id: index,
+    icon: icons[index]
+  }))
+})
+
+// 案例数据
+const casesList = computed(() => {
+  return tm('home.cases.items') as any[]
+})
 
 // 页面加载时的动画效果
 onMounted(() => {
@@ -163,6 +167,14 @@ onMounted(() => {
   font-size: 1.5rem;
   margin-bottom: var(--spacing-xl);
   color: rgba(255, 255, 255, 0.9);
+}
+
+.hero .btn-group {
+  justify-content: center;
+}
+
+.hero .btn {
+  min-width: 160px;
 }
 
 .hero .btn-secondary {
@@ -405,6 +417,10 @@ onMounted(() => {
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
+  
+  .btn-group {
+    justify-content: center;
+  }
 }
 
 .contact-content h2 {

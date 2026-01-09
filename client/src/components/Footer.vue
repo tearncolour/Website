@@ -4,47 +4,47 @@
       <div class="footer-content">
         <div class="footer-logo">
           <img src="../assets/logo.png" alt="无锡灵掌机器人科技有限公司" class="logo" />
-          <p>灵巧手技术，赋能自动化未来</p>
+          <p>{{ $t('footer.slogan') }}</p>
         </div>
         
         <div class="footer-links">
-          <h4>产品与服务</h4>
+          <h4>{{ $t('footer.services.title') }}</h4>
           <ul>
-            <li><router-link to="/services">智能助手</router-link></li>
-            <li><router-link to="/services">数据分析</router-link></li>
-            <li><router-link to="/services">流程自动化</router-link></li>
-            <li><router-link to="/services">视觉识别</router-link></li>
+            <li><router-link to="/services">{{ $t('footer.services.s1') }}</router-link></li>
+            <li><router-link to="/services">{{ $t('footer.services.s2') }}</router-link></li>
+            <li><router-link to="/services">{{ $t('footer.services.s3') }}</router-link></li>
+            <li><router-link to="/services">{{ $t('footer.services.s4') }}</router-link></li>
           </ul>
         </div>
         
         <div class="footer-links">
-          <h4>关于我们</h4>
+          <h4>{{ $t('footer.about.title') }}</h4>
           <ul>
-            <li><router-link to="/about">公司简介</router-link></li>
-            <li><router-link to="/about">团队成员</router-link></li>
-            <li><router-link to="/about">发展历程</router-link></li>
-            <li><router-link to="/about">联系我们</router-link></li>
+            <li><router-link to="/about">{{ $t('footer.about.a1') }}</router-link></li>
+            <li><router-link to="/about">{{ $t('footer.about.a2') }}</router-link></li>
+            <li><router-link to="/about">{{ $t('footer.about.a3') }}</router-link></li>
+            <li><router-link to="/about">{{ $t('footer.about.a4') }}</router-link></li>
           </ul>
         </div>
         
         <div class="footer-contact">
-          <h4>联系我们</h4>
+          <h4>{{ $t('footer.contact.title') }}</h4>
           <ul>
             <li>📧 contact@lingzhang.ai</li>
             <li>📞 +86 400-888-8888</li>
-            <li>📍 中国·深圳</li>
+            <li>📍 {{ $t('footer.contact.location') }}</li>
           </ul>
         </div>
       </div>
       
       <div class="footer-bottom">
         <div class="footer-social">
-          <a href="#" class="social-link">微信</a>
-          <a href="#" class="social-link">微博</a>
-          <a href="#" class="social-link">LinkedIn</a>
+          <a href="#" class="social-link">{{ $t('footer.social.wechat') }}</a>
+          <a href="#" class="social-link">{{ $t('footer.social.weibo') }}</a>
+          <a href="#" class="social-link">{{ $t('footer.social.linkedin') }}</a>
         </div>
         <div class="footer-copyright">
-          <p>&copy; {{ new Date().getFullYear() }} 无锡灵掌机器人科技有限公司. 保留所有权利.</p>
+          <p>&copy; {{ new Date().getFullYear() }} {{ $t('footer.copyright') }}</p>
         </div>
       </div>
     </div>

@@ -25,10 +25,25 @@
             <router-link to="/documentation" class="navbar-link">{{ $t('nav.docs') }}</router-link>
           </li>
           <!-- 语言选择 -->
-          <li class="navbar-item lang-switcher">
-            <a @click="toggleLocale" class="navbar-link lang-btn">
-              {{ currentLocale === 'zh' ? 'EN' : '中文' }}
+          <li class="navbar-item lang-switcher" @mouseenter="isLangMenuOpen = true" @mouseleave="isLangMenuOpen = false">
+            <a class="navbar-link lang-btn">
+              {{ currentLocaleLabel }}
+              <span class="dropdown-arrow"></span>
             </a>
+            <transition name="fade">
+              <div class="lang-dropdown" v-if="isLangMenuOpen">
+                <div 
+                  v-for="lang in languages" 
+                  :key="lang.code" 
+                  class="lang-option" 
+                  :class="{ active: locale === lang.code }"
+                  @click="changeLocale(lang.code)"
+                >
+                  <span class="lang-flag">{{ lang.flag }}</span>
+                  <span class="lang-name">{{ lang.name }}</span>
+                </div>
+              </div>
+            </transition>
           </li>
         </ul>
         
@@ -57,9 +72,12 @@
         <li class="mobile-menu-item">
           <router-link to="/documentation" class="mobile-menu-link" @click="toggleMenu">{{ $t('nav.docs') }}</router-link>
         </li>
-        <li class="mobile-menu-item">
-          <a class="mobile-menu-link" @click="toggleLocale(); toggleMenu()">
-            {{ currentLocale === 'zh' ? 'Switch to English' : '切换至中文' }}
+        <li class="mobile-menu-item lang-divider"></li>
+        <li v-for="lang in languages" :key="lang.code" class="mobile-menu-item">
+          <a class="mobile-menu-link lang-item" @click="changeLocale(lang.code); toggleMenu()">
+            <span class="lang-flag">{{ lang.flag }}</span>
+            <span class="lang-name">{{ lang.name }}</span>
+            <span class="check-mark" v-if="locale === lang.code">✓</span>
           </a>
         </li>
       </ul>
@@ -74,17 +92,30 @@ import { useI18n } from 'vue-i18n'
 
 const { locale } = useI18n()
 const isMenuOpen = ref(false)
+const isLangMenuOpen = ref(false)
 
-const currentLocale = computed(() => locale.value)
+const languages = [
+  { code: 'zh', name: '简体中文', flag: '🇨🇳' },
+  { code: 'en', name: 'English', flag: '🇺🇸' },
+  { code: 'ja', name: '日本語', flag: '🇯🇵' },
+  { code: 'ko', name: '한국어', flag: '🇰🇷' },
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' }
+]
+
+const currentLocaleLabel = computed(() => {
+  const current = languages.find(l => l.code === locale.value)
+  return current ? `${current.flag} ${current.name}` : '🌐 Language'
+})
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
 }
 
-const toggleLocale = () => {
-  const newLocale = locale.value === 'zh' ? 'en' : 'zh'
-  locale.value = newLocale
-  localStorage.setItem('user-language', newLocale)
+const changeLocale = (langCode: string) => {
+  locale.value = langCode
+  localStorage.setItem('user-language', langCode)
+  isLangMenuOpen.value = false
 }
 </script>
 
@@ -151,6 +182,84 @@ const toggleLocale = () => {
 }
 
 .lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  font-size: 14px;
+  background: rgba(0, 0, 0, 0.03);
+  margin-left: 10px;
+  transition: all var(--transition-fast);
+  
+  &:hover {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: var(--color-accent);
+  }
+
+  .dropdown-arrow {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid currentColor;
+    opacity: 0.5;
+  }
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 8px;
+  min-width: 140px;
+  z-index: 1001;
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  color: var(--color-primary);
+  font-size: 14px;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  &.active {
+    color: var(--color-accent);
+    background: rgba(6, 108, 255, 0.05);
+    font-weight: 600;
+  }
+
+  .lang-flag {
+    font-size: 18px;
+  }
+}
+
+/* 动画 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.lang-btn {
   padding: 4px 8px;
   border: 1px solid rgba(0,0,0,0.1);
   border-radius: 4px;
@@ -192,7 +301,7 @@ const toggleLocale = () => {
 }
 
 .mobile-menu {
-  posit60n: fixed;
+  position: fixed;
   top: 72px;
   left: 0;
   right: 0;
@@ -223,6 +332,26 @@ const toggleLocale = () => {
     color: var(--color-accent);
     text-decoration: none;
   }
+
+  &.lang-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    opacity: 0.9;
+
+    .check-mark {
+      margin-left: auto;
+      color: var(--color-accent);
+      font-weight: bold;
+    }
+  }
+}
+
+.lang-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.05);
+  margin: 5px var(--spacing-md) !important;
 }
 
 /* 响应式设计 */

@@ -1,10 +1,18 @@
 import { createI18n } from 'vue-i18n'
 import zh from './locales/zh'
 import en from './locales/en'
+import ja from './locales/ja'
+import de from './locales/de'
+import ko from './locales/ko'
+import fr from './locales/fr'
 
 const messages = {
   zh,
-  en
+  en,
+  ja,
+  de,
+  ko,
+  fr
 }
 
 // 获取保存的语言或根据语言偏好/IP自动识别
@@ -12,7 +20,16 @@ const getInitialLocale = () => {
   const saved = localStorage.getItem('user-language')
   if (saved) return saved
 
-  // 默认返回中文，稍后在全局设置中通过分析自动切换
+  // 检查浏览器语言
+  const browserLang = navigator.language.toLowerCase()
+  if (browserLang.startsWith('zh')) return 'zh'
+  if (browserLang.startsWith('ja')) return 'ja'
+  if (browserLang.startsWith('ko')) return 'ko'
+  if (browserLang.startsWith('fr')) return 'fr'
+  if (browserLang.startsWith('de')) return 'de'
+  if (browserLang.startsWith('en')) return 'en'
+
+  // 默认返回中文
   return 'zh'
 }
 
