@@ -5,17 +5,19 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\" \"npm run docs:dev\"",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\" \"npm run docs:dev\" \"npm run dev:manage\"",
     "dev:client": "cd client && npm run dev",
     "dev:server": "cd server && npm run dev",
+    "dev:manage": "cd manage && npm run dev",
     "docs:dev": "cd docs && npm run dev",
-    "build": "npm run build:wasm && npm run build:client && npm run build:server && npm run build:docs",
+    "build": "npm run build:wasm && npm run build:client && npm run build:server && npm run build:docs && npm run build:manage",
     "build:client": "cd client && npm run build",
     "build:server": "cd server && npm run build",
+    "build:manage": "cd manage && npm run build",
     "build:wasm": "cd wasm && npm run build",
     "build:docs": "cd docs && npm run build",
     "start": "cd server && npm start",
-    "install:all": "npm install && cd client && npm install && cd ../server && npm install && cd ../wasm && npm install && cd ../docs && npm install"
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install && cd ../wasm && npm install && cd ../docs && npm install && cd ../manage && npm install"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

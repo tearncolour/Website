@@ -1,17 +1,17 @@
 export default {
   nav: {
     home: 'الرئيسية',
-    services: 'الخدمات',
-    about: 'حولنا',
-    contact: 'اتصل بنا',
-    docs: 'الوثائق'
+    products: 'المنتجات',
+    downloads: 'مركز التحميل',
+    docs: 'الوثائق',
+    about: 'حولنا'
   },
   hero: {
     slides: [
       {
         title: 'تكنولوجيا اليد الماهرة',
         subtitle: 'الدقة في المهارة، تمكين الصناعة',
-        btnPrimary: 'خدماتنا',
+        btnPrimary: 'منتجاتنا',
         btnOutline: 'حولنا'
       }
     ]

@@ -13,16 +13,19 @@
             <router-link to="/" class="navbar-link">{{ $t('nav.home') }}</router-link>
           </li>
           <li class="navbar-item">
-            <router-link to="/services" class="navbar-link">{{ $t('nav.services') }}</router-link>
+            <router-link to="/products" class="navbar-link">{{ $t('nav.products') }}</router-link>
+          </li>
+          <li class="navbar-item">
+            <router-link to="/downloads" class="navbar-link">{{ $t('nav.downloads') }}</router-link>
+          </li>
+          <li class="navbar-item">
+            <a href="//docs.dextroushands.com" class="navbar-link">{{ $t('nav.docs') }}</a>
           </li>
           <li class="navbar-item">
             <router-link to="/about" class="navbar-link">{{ $t('nav.about') }}</router-link>
           </li>
           <li class="navbar-item">
-            <router-link to="/contact" class="navbar-link">{{ $t('nav.contact') }}</router-link>
-          </li>
-          <li class="navbar-item">
-            <router-link to="/documentation" class="navbar-link">{{ $t('nav.docs') }}</router-link>
+            <a href="/manage/" class="navbar-link">后台管理</a>
           </li>
           <!-- 语言选择 -->
           <li class="navbar-item lang-switcher" @mouseenter="isLangMenuOpen = true" @mouseleave="isLangMenuOpen = false">
@@ -61,16 +64,16 @@
           <router-link to="/" class="mobile-menu-link" @click="toggleMenu">{{ $t('nav.home') }}</router-link>
         </li>
         <li class="mobile-menu-item">
-          <router-link to="/services" class="mobile-menu-link" @click="toggleMenu">{{ $t('nav.services') }}</router-link>
+          <router-link to="/products" class="mobile-menu-link" @click="toggleMenu">{{ $t('nav.products') }}</router-link>
+        </li>
+        <li class="mobile-menu-item">
+          <router-link to="/downloads" class="mobile-menu-link" @click="toggleMenu">{{ $t('nav.downloads') }}</router-link>
+        </li>
+        <li class="mobile-menu-item">
+          <a href="//docs.dextroushands.com" class="mobile-menu-link" @click="toggleMenu">{{ $t('nav.docs') }}</a>
         </li>
         <li class="mobile-menu-item">
           <router-link to="/about" class="mobile-menu-link" @click="toggleMenu">{{ $t('nav.about') }}</router-link>
-        </li>
-        <li class="mobile-menu-item">
-          <router-link to="/contact" class="mobile-menu-link" @click="toggleMenu">{{ $t('nav.contact') }}</router-link>
-        </li>
-        <li class="mobile-menu-item">
-          <router-link to="/documentation" class="mobile-menu-link" @click="toggleMenu">{{ $t('nav.docs') }}</router-link>
         </li>
         <li class="mobile-menu-item lang-divider"></li>
         <li v-for="lang in languages" :key="lang.code" class="mobile-menu-item">

@@ -1,17 +1,17 @@
 export default {
   nav: {
     home: 'หน้าแรก',
-    services: 'บริการ',
-    about: 'เกี่ยวกับเรา',
-    contact: 'ติดต่อเรา',
-    docs: 'เอกสาร'
+    products: 'สินค้า',
+    downloads: 'ดาวน์โหลด',
+    docs: 'เอกสาร',
+    about: 'เกี่ยวกับเรา'
   },
   hero: {
     slides: [
       {
         title: 'เทคโนโลยีมือกลอัจฉริยะ',
         subtitle: 'ความแม่นยำในความคล่องแคล่ว เสริมพลังให้อุตสาหกรรม',
-        btnPrimary: 'บริการของเรา',
+        btnPrimary: 'สินค้าของเรา',
         btnOutline: 'เกี่ยวกับเรา'
       }
     ]

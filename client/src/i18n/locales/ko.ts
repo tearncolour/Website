@@ -1,17 +1,17 @@
 export default {
   nav: {
     home: "홈",
-    services: "서비스",
-    about: "회사 소개",
-    contact: "문의하기",
-    docs: "기술 문서"
+    products: "제품",
+    downloads: "다운로드",
+    docs: "기술 문서",
+    about: "회사 소개"
   },
   hero: {
     slides: [
       {
         title: "링장 테크놀로지",
         subtitle: "정교한 기술로 산업에 힘을 실어줍니다",
-        btnPrimary: "서비스 보기",
+        btnPrimary: "제품 보기",
         btnOutline: "회사 소개"
       }
     ]

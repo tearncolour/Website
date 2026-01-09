@@ -1,17 +1,17 @@
 export default {
   nav: {
     home: 'ホーム',
-    services: 'サービス',
-    about: '私達について',
-    contact: 'お問い合わせ',
-    docs: 'ドキュメント'
+    products: '製品',
+    downloads: 'ダウンロード',
+    docs: 'ドキュメント',
+    about: '私達について'
   },
   hero: {
     slides: [
       {
         title: 'デクステラス・ハンド・テック',
         subtitle: '器用さの精密さ、産業への力',
-        btnPrimary: 'サービス',
+        btnPrimary: '当社の製品',
         btnOutline: '私達について'
       }
     ]

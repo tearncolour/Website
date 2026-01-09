@@ -10,10 +10,10 @@ const router = createRouter({
       component: Home
     },
     {
-      path: '/services',
-      name: 'services',
-      // 懒加载服务页面
-      component: () => import('../views/Services.vue')
+      path: '/products',
+      name: 'products',
+      // 懒加载产品页面
+      component: () => import('../views/Products.vue')
     },
     {
       path: '/about',
@@ -22,10 +22,9 @@ const router = createRouter({
       component: () => import('../views/About.vue')
     },
     {
-      path: '/contact',
-      name: 'contact',
-      // 懒加载联系我们页面
-      component: () => import('../views/Contact.vue')
+      path: '/downloads',
+      name: 'downloads',
+      component: () => import('../views/Downloads.vue')
     },
     {
       path: '/documentation',

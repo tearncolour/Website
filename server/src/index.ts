@@ -68,32 +68,47 @@ async function bootstrap() {
 
   // 静态文件服务（生产环境）
   if (process.env.NODE_ENV === 'production') {
+    // 主站静态文件
     await server.register(fastifyStatic, {
       root: join(__dirname, '../../client/dist'),
       prefix: '/',
       cacheControl: true,
       maxAge: '1d',
       immutable: true,
+      decorateReply: false, // 防止多个 static 注册冲突
     });
 
-    // 文档静态文件服务
+    // 文档静态文件
     await server.register(fastifyStatic, {
-      root: join(__dirname, '../../client/docs/.vitepress/dist'),
+      root: join(__dirname, '../../docs/.vitepress/dist'),
       prefix: '/docs',
       cacheControl: true,
       maxAge: '1d',
       immutable: true,
+      decorateReply: false,
     });
 
-    // SPA 路由回退
+    // 独立管理后台静态文件
+    await server.register(fastifyStatic, {
+      root: join(__dirname, '../../manage/dist'),
+      prefix: '/manage',
+      cacheControl: true,
+      maxAge: '1d',
+      immutable: true,
+      decorateReply: false,
+    });
+
+    // SPA 路由回退集
     server.setNotFoundHandler((request, reply) => {
-      if (request.url.startsWith('/api')) {
+      const url = request.url;
+      if (url.startsWith('/api')) {
         reply.code(404).send({ error: 'API endpoint not found' });
-      } else if (request.url.startsWith('/docs')) {
-        // 文档路由回退
-        reply.sendFile('index.html', join(__dirname, '../../client/docs/.vitepress/dist'));
+      } else if (url.startsWith('/docs')) {
+        reply.sendFile('index.html', join(__dirname, '../../docs/.vitepress/dist'));
+      } else if (url.startsWith('/manage')) {
+        reply.sendFile('index.html', join(__dirname, '../../manage/dist'));
       } else {
-        reply.sendFile('index.html');
+        reply.sendFile('index.html', join(__dirname, '../../client/dist'));
       }
     });
   }

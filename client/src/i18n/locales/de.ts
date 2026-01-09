@@ -1,17 +1,17 @@
 export default {
   nav: {
     home: 'Startseite',
-    services: 'Dienstleistungen',
-    about: 'Über uns',
-    contact: 'Kontakt',
-    docs: 'Dokumentation'
+    products: 'Produkte',
+    downloads: 'Downloads',
+    docs: 'Dokumentation',
+    about: 'Über uns'
   },
   hero: {
     slides: [
       {
         title: 'Dexterous Hand Tech',
         subtitle: 'Präzision in der Geschicklichkeit, Stärkung der Industrie',
-        btnPrimary: 'Unsere Dienste',
+        btnPrimary: 'Unsere Produkte',
         btnOutline: 'Über uns'
       }
     ]
@@ -34,7 +34,7 @@ export default {
     },
     contact: {
       title: 'Kontakt',
-      location: 'Shenzhen, China'
+      location: 'Wuxi, China'
     },
     social: {
       wechat: 'WeChat',

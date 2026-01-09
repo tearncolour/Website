@@ -3,16 +3,28 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: '灵掌WIKI',
   description: '灵掌机器人技术文档库',
+  // 启用编译缓存
+  cacheDir: './.vitepress/cache',
   themeConfig: {
     siteTitle: false,
     nav: [
       { text: '首页', link: '/' },
       { text: '用户指南', link: '/guide/' },
       { text: 'API 参考', link: '/api/' },
+      { text: 'ROS 驱动', link: '/ros/gripper/gripper' },
       { text: '产品目录', link: '/products/' },
       { text: '关于我们', link: '/about/' }
     ],
     sidebar: {
+      '/ros/': [
+        {
+          text: 'ROS 驱动',
+          items: [
+            { text: '灵巧手驱动 (ROS2)', link: '/ros/gripper/gripper' },
+            { text: '工作空间配置', link: '/ros/ws/ws' }
+          ]
+        }
+      ],
       '/guide/': [
         { text: '快速开始', link: '/guide/' },
         { text: '安装配置', link: '/guide/installation' },
@@ -94,6 +106,11 @@ export default defineConfig({
       title: '找不到页面',
       quote: '抱歉，您访问的页面不存在或已被移动。',
       linkText: '返回首页'
+    }
+  },
+  vite: {
+    build: {
+      sourcemap: false
     }
   }
 })

@@ -11,7 +11,6 @@
       <div class="container">
         <div class="services-list">
           <div class="service-item" v-for="service in services" :key="service.id">
-            <div class="service-icon">{{ service.icon }}</div>
             <div class="service-info">
               <h2>{{ service.name }}</h2>
               <p>{{ service.description }}</p>
@@ -96,11 +95,6 @@ const services = [
   padding: var(--spacing-lg);
   background-color: var(--color-background);
   border-radius: 12px;
-}
-
-.service-icon {
-  font-size: 3rem;
-  flex-shrink: 0;
 }
 
 .service-info h2 {

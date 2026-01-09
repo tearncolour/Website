@@ -1,9 +1,9 @@
 export default {
   nav: {
     home: 'Home',
-    services: 'Services',
+    products: 'Products',
     about: 'About Us',
-    contact: 'Contact',
+    downloads: 'Downloads',
     docs: 'Documentation'
   },
   hero: {
@@ -46,7 +46,7 @@ export default {
     },
     contact: {
       title: 'Contact Us',
-      location: 'Shenzhen, China'
+      location: 'Wuxi, China'
     },
     social: {
       wechat: 'WeChat',

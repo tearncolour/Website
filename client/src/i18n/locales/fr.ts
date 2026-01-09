@@ -1,17 +1,17 @@
 export default {
   nav: {
     home: 'Accueil',
-    services: 'Services',
-    about: 'À Propos',
-    contact: 'Contact',
-    docs: 'Documentation'
+    products: 'Produits',
+    downloads: 'Téléchargements',
+    docs: 'Documentation',
+    about: 'À Propos'
   },
   hero: {
     slides: [
       {
         title: 'Technologie de Main Dextre',
         subtitle: 'Précision dans la Dextérité, Autonomisation de l\'Industrie',
-        btnPrimary: 'Nos Services',
+        btnPrimary: 'Nos Produits',
         btnOutline: 'À Propos de Nous'
       }
     ]
@@ -34,7 +34,7 @@ export default {
     },
     contact: {
       title: 'Contactez-nous',
-      location: 'Shenzhen, Chine'
+      location: 'Wuxi, Chine'
     },
     social: {
       wechat: 'WeChat',

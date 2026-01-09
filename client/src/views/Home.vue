@@ -4,92 +4,89 @@
     <section class="hero">
       <div class="container" v-if="heroSlides.length > 0">
         <div class="hero-wrapper">
-          <transition name="hero-fade" mode="out-in" appear>
-            <div :key="currentSlide" class="hero-slide-content">
-              <div class="hero-text">
-                <h1>{{ heroSlides[currentSlide].title }}</h1>
-                <p>{{ heroSlides[currentSlide].subtitle }}</p>
-                <div class="btn-group">
-                  <router-link to="/services" class="btn btn-primary">{{ heroSlides[currentSlide].btnPrimary }}</router-link>
-                  <router-link to="/about" class="btn btn-outline">{{ heroSlides[currentSlide].btnOutline }}</router-link>
-                </div>
-              </div>
-              <div class="hero-image">
-                <img src="../assets/LZ-001.png" alt="Dexterous Hand" />
+          <div class="hero-slide-content">
+            <div class="hero-text">
+              <h1>{{ heroSlides[0].title }}</h1>
+              <p>{{ heroSlides[0].subtitle }}</p>
+              <div class="btn-group">
+                <router-link to="/products" class="btn btn-primary">{{ heroSlides[0].btnPrimary }}</router-link>
+                <router-link to="/about" class="btn btn-outline">{{ heroSlides[0].btnOutline }}</router-link>
               </div>
             </div>
-          </transition>
-        </div>
-        
-        <!-- 幻灯片指示器 -->
-        <div class="hero-indicators">
-          <button 
-            v-for="(_, index) in heroSlides" 
-            :key="index" 
-            :class="['indicator-dot', { active: currentSlide === index }]"
-            @click="goToSlide(index)"
-            :aria-label="'Go to slide ' + (index + 1)"
-          ></button>
-        </div>
-      </div>
-    </section>
-    
-    <!-- 服务亮点区域 -->
-    <section class="services-highlights">
-      <div class="container">
-        <h2 class="text-center section-header">{{ $t('home.services.title') }}</h2>
-        <div class="services-grid">
-          <div class="service-card" v-for="service in servicesList" :key="service.id">
-            <div class="service-icon">{{ service.icon }}</div>
-            <h3>{{ service.name }}</h3>
-            <p>{{ service.description }}</p>
-            <router-link to="/services" class="service-link">{{ $t('home.services.learnMore') }} &rarr;</router-link>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- 产品展示区域 -->
-    <section class="product-showcase">
-      <div class="container">
-        <div class="product-content">
-          <div class="product-text">
-            <h2 class="section-header">{{ $t('home.product.title') }}</h2>
-            <p>{{ $t('home.product.description') }}</p>
-            <div class="btn-group">
-              <router-link to="/services" class="btn btn-primary">{{ $t('home.product.button') }}</router-link>
-            </div>
-          </div>
-          <div class="product-image">
-            <div class="image-placeholder">
-              <div class="tech-animation">
-                <div class="tech-circle"></div>
-                <div class="tech-circle"></div>
-                <div class="tech-circle"></div>
-              </div>
+            <div class="hero-image">
+              <img src="../assets/LZ-001.png" alt="Dexterous Hand" />
             </div>
           </div>
         </div>
       </div>
     </section>
     
-    <!-- 成功案例区域 -->
+    <!-- 客户案例区域 -->
     <section class="success-stories">
       <div class="container">
-        <h2 class="text-center section-header">{{ $t('home.cases.title') }}</h2>
-        <div class="cases-grid">
-          <div class="case-card" v-for="caseItem in casesList" :key="caseItem.id">
-            <div class="case-industry">{{ caseItem.industry }}</div>
-            <h3>{{ caseItem.title }}</h3>
-            <p class="case-client">{{ $t('home.cases.clientPrefix') }}{{ caseItem.client }}</p>
-            <p>{{ caseItem.description }}</p>
-            <div class="case-metrics">
-              <div class="metric" v-for="(value, key) in caseItem.metrics" :key="key">
-                <span class="metric-value">{{ value }}</span>
-                <span class="metric-label">{{ key }}</span>
+        <p class="text-center cases-subtitle">{{ $t('home.cases.title') }}</p>
+        
+        <div class="scroller-container">
+          <!-- 第一排：向左滚动 -->
+          <div class="logo-scroller scroll-left">
+            <div class="logo-track">
+              <div class="logo-item" v-for="n in 8" :key="'r1-' + n">
+                <div class="logo-placeholder">Partner {{ n }}</div>
+              </div>
+              <div class="logo-item" v-for="n in 8" :key="'r1-dup-' + n">
+                <div class="logo-placeholder">Partner {{ n }}</div>
               </div>
             </div>
           </div>
+
+          <!-- 第二排：向右滚动 (对向) -->
+          <div class="logo-scroller scroll-right">
+            <div class="logo-track">
+              <div class="logo-item" v-for="n in 8" :key="'r2-' + n">
+                <div class="logo-placeholder">Partner {{ n + 8 }}</div>
+              </div>
+              <div class="logo-item" v-for="n in 8" :key="'r2-dup-' + n">
+                <div class="logo-placeholder">Partner {{ n + 8 }}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 第三排：向左滚动 (错位) -->
+          <div class="logo-scroller scroll-left offset">
+            <div class="logo-track">
+              <div class="logo-item" v-for="n in 8" :key="'r3-' + n">
+                <div class="logo-placeholder">Partner {{ n + 16 }}</div>
+              </div>
+              <div class="logo-item" v-for="n in 8" :key="'r3-dup-' + n">
+                <div class="logo-placeholder">Partner {{ n + 16 }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 新闻中心区域 -->
+    <section class="news-section">
+      <div class="container">
+        <h2 class="section-header">新闻中心</h2>
+        <div class="news-horizontal-container">
+          <div class="news-track">
+            <a v-for="news in newsList" :key="news.id" :href="news.link" target="_blank" class="news-card">
+              <div class="news-image">
+                <img :src="news.image" alt="news thumbnail" />
+                <div class="news-date">{{ news.date }}</div>
+              </div>
+              <div class="news-content">
+                <h3>{{ news.title }}</h3>
+                <span class="news-source">{{ news.source }}</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!-- 底部横向滚动条指示 -->
+        <div class="scrollbar-hint">
+          <div class="scroll-instruction">← 滑动查看更多 →</div>
         </div>
       </div>
     </section>
@@ -101,7 +98,7 @@
           <h2 class="section-header">{{ $t('home.contact.title') }}</h2>
           <p>{{ $t('home.contact.description') }}</p>
           <div class="btn-group">
-            <router-link to="/contact" class="btn btn-primary">{{ $t('home.contact.button') }}</router-link>
+            <router-link to="/about" class="btn btn-primary">{{ $t('home.contact.button') }}</router-link>
           </div>
         </div>
       </div>
@@ -116,8 +113,26 @@ import { useI18n } from 'vue-i18n'
 
 const { tm } = useI18n()
 const scrollObserver = ref<IntersectionObserver | null>(null)
-const currentSlide = ref(0)
-const slideInterval = ref<any>(null)
+const newsList = ref<any[]>([])
+
+// 异步获取新闻
+const fetchNewsData = async () => {
+  try {
+    const response = await fetch('/api/news')
+    const result = await response.json()
+    if (result.success) {
+      newsList.value = result.data
+    }
+  } catch (err) {
+    console.error('Failed to fetch news:', err)
+    // 降级处理：手动填入抓取到的主要新闻
+    newsList.value = [
+      { id: 1, title: '行业首个！凯龙高科灵巧手全操作力动态检测平台发布', date: '2025-12-23', source: '新浪财经', link: 'https://finance.sina.com.cn/', image: 'https://img1.baidu.com/it/u=2238382717,1030097123&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=333' },
+      { id: 2, title: '凯龙机器人布局落地双提速 展会彰显硬实力', date: '2025-11-28', source: '东方财富网', link: 'https://caifu.eastmoney.com/', image: 'https://img2.baidu.com/it/u=3070497551,3323049071&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=500' },
+      { id: 3, title: '无锡造具身智能机器人,硬核出道!', date: '2025-11-27', source: '无锡观察', link: 'https://www.wuxi.gov.cn/', image: 'https://img.pconline.com.cn/images/upload/upc/tx/itbd/1406/11/c3/35165158_1402473636734.jpg' }
+    ]
+  }
+}
 
 // Hero 幻灯片数据
 const heroSlides = computed(() => {
@@ -125,42 +140,10 @@ const heroSlides = computed(() => {
   return Array.isArray(slides) ? slides : []
 })
 
-const nextSlide = () => {
-  if (heroSlides.value.length > 0) {
-    currentSlide.value = (currentSlide.value + 1) % heroSlides.value.length
-  }
-}
-
-const goToSlide = (index: number) => {
-  currentSlide.value = index
-  resetSlideTimer()
-}
-
-const resetSlideTimer = () => {
-  if (slideInterval.value) clearInterval(slideInterval.value)
-  slideInterval.value = setInterval(nextSlide, 5000)
-}
-
-// 服务数据
-const servicesList = computed(() => {
-  const data = tm('home.services.items') as any[]
-  const icons = ['🤖', '📊', '⚙️', '👁️']
-  return data.map((item, index) => ({
-    ...item,
-    id: index,
-    icon: icons[index]
-  }))
-})
-
-// 案例数据
-const casesList = computed(() => {
-  return tm('home.cases.items') as any[]
-})
-
 // 页面加载时的动画效果
 onMounted(async () => {
+  fetchNewsData()
   await nextTick()
-  resetSlideTimer()
   
   const observerOptions = {
     threshold: 0.1,
@@ -176,7 +159,7 @@ onMounted(async () => {
   }, observerOptions)
 
   // 观察元素
-  const elementsToWatch = document.querySelectorAll('.reveal, .service-card, .case-card, .product-content, .section-header')
+  const elementsToWatch = document.querySelectorAll('.reveal, .case-card, .news-card, .product-content, .section-header')
   elementsToWatch.forEach(el => {
     scrollObserver.value?.observe(el)
   })
@@ -185,9 +168,6 @@ onMounted(async () => {
 onUnmounted(() => {
   if (scrollObserver.value) {
     scrollObserver.value.disconnect()
-  }
-  if (slideInterval.value) {
-    clearInterval(slideInterval.value)
   }
 })
 </script>
@@ -236,53 +216,6 @@ section {
   min-height: 100vh;
   padding-bottom: 10vh;
   box-sizing: border-box;
-}
-
-/* 幻灯片指示器 */
-.hero-indicators {
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 15px;
-  z-index: 10;
-
-  .indicator-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.15);
-    border: none;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    padding: 0;
-
-    &.active {
-      background: var(--color-primary);
-      width: 24px; /* 药丸型动态指示器 */
-      border-radius: 3px;
-    }
-  }
-}
-
-/* 幻灯片切换动画 - 苹果风格：平滑、优雅 */
-.hero-fade-enter-active {
-  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hero-fade-leave-active {
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hero-fade-enter-from {
-  opacity: 0;
-  transform: scale(1.02) translateY(30px);
-}
-
-.hero-fade-leave-to {
-  opacity: 0;
-  transform: scale(0.98) translateY(-30px);
 }
 
 .hero-text {
@@ -411,16 +344,7 @@ section {
   }
 }
 
-/* 服务亮点 */
-.services-highlights {
-  padding: var(--spacing-xxl) 0;
-  background-color: var(--color-background);
-}
-
-.services-highlights h2 {
-  margin-bottom: var(--spacing-xl);
-  font-size: 2.5rem;
-}
+/* 导航与内容显示 */
 
 .services-grid {
   display: grid;
@@ -447,11 +371,6 @@ section {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   }
-}
-
-.service-icon {
-  font-size: 4rem;
-  margin-bottom: var(--spacing-md);
 }
 
 .service-card h3 {
@@ -537,68 +456,227 @@ section {
   to { transform: rotate(360deg); }
 }
 
-/* 成功案例 */
+/* 客户案例 */
 .success-stories {
   background-color: var(--color-background);
+  padding: var(--spacing-xxl) 0;
+  overflow: hidden;
 }
 
-.cases-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--spacing-lg);
+.cases-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-secondary);
+  font-weight: 500;
+  margin-bottom: 30px;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
 }
 
-.case-card {
-  background-color: var(--color-white);
-  padding: var(--spacing-xl);
-  border-radius: 20px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+.scroller-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.logo-scroller {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 0;
   
-  &:hover {
-    transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+  &::before, &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    z-index: 2;
+  }
+  
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, var(--color-background), transparent);
+  }
+  
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, var(--color-background), transparent);
   }
 }
 
-.case-industry {
-  display: inline-block;
-  background-color: #f1f1f3;
-  color: var(--color-secondary);
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
-  margin-bottom: var(--spacing-md);
+.logo-track {
+  display: flex;
+  width: max-content;
+  gap: 30px;
 }
 
-.case-client {
+.scroll-left .logo-track {
+  animation: scroll-left 30s linear infinite;
+}
+
+.scroll-right .logo-track {
+  animation: scroll-right 30s linear infinite;
+}
+
+.scroll-left.offset .logo-track {
+  animation-duration: 35s; /* 不同的速度产生错位感 */
+}
+
+.logo-scroller:hover .logo-track {
+  animation-play-state: paused;
+}
+
+.logo-item {
+  width: 180px;
+  flex-shrink: 0;
+}
+
+.logo-placeholder {
+  width: 100%;
+  height: 90px;
+  background-color: var(--color-white);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 600;
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-sm);
+  color: #adb5bd;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  
+  &:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background-color: var(--color-white);
+  }
 }
 
-.case-metrics {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid #eee;
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-210px * 8)); } /* width 180px + gap 30px */
 }
 
-.metric-value {
+@keyframes scroll-right {
+  0% { transform: translateX(calc(-210px * 8)); }
+  100% { transform: translateX(0); }
+}
+
+/* 新闻中心 */
+.news-section {
+  padding: var(--spacing-xxl) 0;
+  background-color: var(--color-white);
+}
+
+.news-horizontal-container {
+  overflow-x: auto;
+  padding: 20px 0;
+  margin: 0 -20px;
+  -webkit-overflow-scrolling: touch;
+  
+  /* 自定义滚动条样式 */
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 10px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+  }
+}
+
+.news-track {
+  display: flex;
+  gap: 30px;
+  padding: 0 40px;
+  width: max-content;
+}
+
+.news-card {
+  width: 320px;
+  background: var(--color-white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  text-decoration: none;
+  color: inherit;
   display: block;
-  font-weight: 700;
-  color: var(--color-accent);
-  font-size: 1.4rem;
-  letter-spacing: -0.02em;
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    
+    .news-image img {
+      transform: scale(1.1);
+    }
+  }
 }
 
-.metric-label {
-  display: block;
-  font-size: 12px;
+.news-image {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+}
+
+.news-date {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: var(--color-primary);
+  color: white;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-top-right-radius: 8px;
+}
+
+.news-content {
+  padding: 20px;
+  
+  h3 {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 3rem;
+  }
+}
+
+.news-source {
+  font-size: 0.85rem;
   color: var(--color-secondary);
-  margin-top: 4px;
+  opacity: 0.7;
+}
+
+.scrollbar-hint {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+  opacity: 0.6;
 }
 
 /* 联系我们区域 */

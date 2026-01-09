@@ -1,17 +1,17 @@
 export default {
   nav: {
     home: 'Inicio',
-    services: 'Servicios',
-    about: 'Sobre Nosotros',
-    contact: 'Contacto',
-    docs: 'Documentación'
+    products: 'Productos',
+    downloads: 'Descargas',
+    docs: 'Documentación',
+    about: 'Sobre Nosotros'
   },
   hero: {
     slides: [
       {
         title: 'Tech de Mano Diestra',
         subtitle: 'Precisión en la Destreza, Potenciando la Industria',
-        btnPrimary: 'Nuestros Servicios',
+        btnPrimary: 'Nuestros Productos',
         btnOutline: 'Sobre Nosotros'
       }
     ]
@@ -34,7 +34,7 @@ export default {
     },
     contact: {
       title: 'Contáctenos',
-      location: 'Shenzhen, China'
+      location: 'Wuxi, China'
     },
     social: {
       wechat: 'WeChat',

@@ -186,6 +186,6 @@ MIT License
 
 灵掌智能致力于为企业提供领先的人工智能解决方案，推动数字化转型。
 
-- 官网: https://lingzhang.ai
-- 邮箱: contact@lingzhang.ai
+- 官网: https://dextroushands.com
+- 邮箱: contact@dextroushands.com
 - 电话: 400-888-8888

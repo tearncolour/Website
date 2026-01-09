@@ -8,12 +8,12 @@
         </div>
         
         <div class="footer-links">
-          <h4>{{ $t('footer.services.title') }}</h4>
+          <h4>{{ $t('footer.products.title') }}</h4>
           <ul>
-            <li><router-link to="/services">{{ $t('footer.services.s1') }}</router-link></li>
-            <li><router-link to="/services">{{ $t('footer.services.s2') }}</router-link></li>
-            <li><router-link to="/services">{{ $t('footer.services.s3') }}</router-link></li>
-            <li><router-link to="/services">{{ $t('footer.services.s4') }}</router-link></li>
+            <li><router-link to="/products">{{ $t('footer.products.s1') }}</router-link></li>
+            <li><router-link to="/products">{{ $t('footer.products.s2') }}</router-link></li>
+            <li><router-link to="/products">{{ $t('footer.products.s3') }}</router-link></li>
+            <li><router-link to="/products">{{ $t('footer.products.s4') }}</router-link></li>
           </ul>
         </div>
         
@@ -30,7 +30,7 @@
         <div class="footer-contact">
           <h4>{{ $t('footer.contact.title') }}</h4>
           <ul>
-            <li>📧 contact@lingzhang.ai</li>
+            <li>📧 contact@dextroushands.com</li>
             <li>📞 +86 400-888-8888</li>
             <li>📍 {{ $t('footer.contact.location') }}</li>
           </ul>

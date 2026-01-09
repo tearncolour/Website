@@ -1,17 +1,17 @@
 export default {
   nav: {
     home: 'Trang chủ',
-    services: 'Dịch vụ',
-    about: 'Về chúng tôi',
-    contact: 'Liên hệ',
-    docs: 'Tài liệu'
+    products: 'Sản phẩm',
+    downloads: 'Tải xuống',
+    docs: 'Tài liệu',
+    about: 'Về chúng tôi'
   },
   hero: {
     slides: [
       {
         title: 'Công nghệ Tay Khéo léo',
         subtitle: 'Chính xác trong Sự khéo léo, Tăng cường sức mạnh cho Công nghiệp',
-        btnPrimary: 'Dịch vụ của chúng tôi',
+        btnPrimary: 'Sản phẩm của chúng tôi',
         btnOutline: 'Về chúng tôi'
       }
     ]

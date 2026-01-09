@@ -15,7 +15,7 @@
         <div class="docs-option">
           <h3>在线文档（推荐）</h3>
           <p>访问完整的在线文档库，包含最新的文档内容和搜索功能。</p>
-          <a href="/docs" class="btn btn-primary" target="_blank">
+          <a href="//docs.dextroushands.com" class="btn btn-primary" target="_blank">
             <i class="icon-doc"></i>
             打开在线文档
           </a>
@@ -34,15 +34,15 @@
       <div class="docs-quick-nav">
         <h3>快速导航</h3>
         <div class="nav-grid">
-          <a href="/docs/guide/" class="nav-item" target="_blank">
+          <a href="//docs.dextroushands.com/guide/" class="nav-item" target="_blank">
             <i class="icon-guide"></i>
             用户指南
           </a>
-          <a href="/docs/api/" class="nav-item" target="_blank">
+          <a href="//docs.dextroushands.com/api/" class="nav-item" target="_blank">
             <i class="icon-api"></i>
             API 参考
           </a>
-          <a href="/docs/about/" class="nav-item" target="_blank">
+          <a href="//docs.dextroushands.com/about/" class="nav-item" target="_blank">
             <i class="icon-about"></i>
             关于文档
           </a>
