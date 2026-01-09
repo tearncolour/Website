@@ -1,0 +1,15 @@
+.vp-logo {
+  height: 40px;
+  width: auto;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+.footer-copyright {
+  text-align: center;
+  padding: 24px;
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+  border-top: 1px solid var(--vp-c-divider);
+  background-color: var(--vp-c-bg);
+}
